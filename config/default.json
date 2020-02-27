@@ -1,0 +1,16 @@
+{
+    "mysql": {
+      "connectionLimit": 50,
+      "host": "db4free.net",
+      "port": 3306,
+      "user": "lamphong19",
+      "password": "19121999",
+      "database": "qldg_completed"
+    },
+    "paginate": {
+      "limit": 5
+    },
+    "host":{
+      "port": 8000
+    }
+  }

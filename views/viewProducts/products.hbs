@@ -1,0 +1,72 @@
+{{#section 'css'}}
+    <link rel="stylesheet" href="sweetalert2.min.css">
+{{/section}}
+
+{{#section 'js'}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.28.2/sweetalert2.all.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
+
+    <script>
+        function customAlert(){
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Thêm vào yêu thích thành công',
+                    showConfirmButton: false,
+                    timer: 3000
+                })
+        }
+    </script>
+{{/section}}
+
+
+<div class="container">
+	{{#if this.empty}}
+	<div class="row" style="background-color:#F1F2F2;">
+		<p>Không có dữ liệu</p>
+	</div>
+	{{else}}
+    <form method="POST">
+	<div class="row" style="background-color:#F1F2F2;">
+		{{#each this.products}}
+            <div class="card shadow bg-white rounded m-1" style="width: 13em;">
+                <img src="/images/{{id}}/main.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ten_sp}}</h5>
+                    <h6 class="card-text">Giá hiện tại: {{format gia_hien_tai}}</h6>
+                    <h6 class="card-text">Bidder đặt giá cao nhất: Yang</h6>
+                    <h6 class="card-text">Ngày đăng: {{ngay_dang}}</h6>
+                    <h6 class="card-text">Ngày kết thúc: {{ngay_ket_thuc}}</h6>
+                    <h6 class="card-text">Số lượt ra giá:{{total}} </h6>
+                    <div class="row">
+                        <a href="/{{id}}/detailproduct" class="btn btn-secondary" role="button" aria-pressed="true">Chi tiết</a>
+						<button type="submit"  class="btn btn-danger" formaction="/favourite/{{id}}">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            Yêu thích
+                        </button>
+                    </div>
+                </div>
+            </div>  
+        {{/each}}  
+	</div>
+    </form>
+	<nav aria-label="Page navigation example">
+		 	<ul class="pagination justify-content-center">
+		   		{{#each this.page_numbers}}   
+				{{#if isCurrentPage}}
+		   		<li class="page-item active" aria-current="page">
+					   <a class="page-link" href="javascript:;">{{value}} <span class="sr-only">(current)</span> </a>
+				</li>
+		   		{{else}}
+		   		<li class="page-item">
+		     		<a class="page-link" href="?page={{value}}">{{value}}</a>
+		   		</li>
+				{{/if}}
+				{{/each}}
+		 	</ul>
+	</nav>
+	{{/if}}
+</div>
+	
+
+	

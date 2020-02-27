@@ -1,0 +1,227 @@
+{{#section 'js'}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    function validPrice() {
+        var BidPrice = document.forms["FrmBid"]["gia_dau"];
+
+        if (BidPrice.value == "") {
+            BidPrice.style.borderColor = "red";
+            return false;
+        }
+
+        BidPrice.style.borderColor = "lightgrey";
+        return true;
+    }
+</script>
+{{/section}}
+<div class="col-lg-9 col-centered mt-4">
+    {{#if this.err_message}}
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <strong>{{err_message}}</strong>
+    </div>
+
+    <script>
+        $(".alert").alert();
+    </script>
+    {{else}}
+    {{#if this.success}}
+    <div class="alert alert-primary alert-dismissible fade show" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            <span class="sr-only">Close</span>
+        </button>
+        <strong>{{success}}</strong>
+    </div>
+    {{/if}}
+    {{/if}}
+    {{#each this.products}}
+    <div class="row no-gutters">
+        <div class="col-md-4">
+            <img src="/images/{{id}}/main.jpg" alt={{id}} style="width: 300px; height: 300px;">
+            <ul class="row" style="list-style: none; margin-top:5px; padding:0; margin-left: 0;">
+                <li><img src="/images/{{id}}/{{id}}-2.jpg" alt="..."
+                        style="width: 100px; height:100px; padding-right: 5px;"></li>
+                <li><img src="/images/{{id}}/{{id}}-3.jpg" alt="..."
+                        style="width: 100px; height:100px; padding-right: 5px"></li>
+                <li><img src="/images/{{id}}/{{id}}-4.jpg" alt="..." style="width: 100px; height:100px;"></li>
+            </ul>
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h3 class="card-title">{{ten_sp}}</h3>
+                <h4 class="mb-0">Giá hiện tại: {{format gia_hien_tai}}</i></h4>
+                <h4 class="mb-0">Giá khởi điểm: {{format gia_khoi_diem}}</h4>
+                {{/each}}
+                {{#each this.sellers}}
+                <small class="text-muted">Người bán: <a href="/account/{{id}}/rate">{{ten}}</a></small>
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                4.0 stars
+                {{/each}}
+                {{#each this.products}}
+                <br>
+                <small class="text-muted">Ngày đăng: {{ngay_dang}}</small>
+                <br>
+                <small class="text-muted">Thời điểm kết thúc: {{ngay_het_han}}</small>
+                <br>
+                <small class="text-muted">Bidder ra giá cao nhất: </small>
+                <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                4.0 stars
+                <form onsubmit="return validPrice()" novalidate method="POST" id="frmBid" name="FrmBid">
+                    <div class="form-group mb-2">
+                        <label for="bidPrice" class="sr-only">Bid Price</label>
+                    </div>
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="gia_dau" class="sr-only"></label>
+                        <input type="text" class="form-control" id="gia_dau" name="gia_dau"
+                            placeholder="Cao hơn {{gia_hien_tai}}" style="width: 300px">
+                    </div>
+                    <!--Bid Button-->
+                    <button type="button" class="btn btn-secondary mb-2" data-toggle="modal" data-target="#myModal">Bid</button>
+                    <!--Confirm Dialog-->
+                    <div class="modal fade" id="myModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Xác nhận đấu giá</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    Bạn có chắc muốn ra giá ?
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="submit" form="frmBid" value="Submit" class="btn btn-primary" 
+                                        formaction="/products/{{id}}/{{gia_hien_tai}}/bid">Xác nhận</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form id="frmProduct" name="frmProduct" method="POST">
+                    <button type="submit" form="frmProduct" class="btn btn-danger" formaction="/favourite/{{id}}">
+                        <i class="fa fa-trash-o" aria-hidden="true"></i>
+                        Yêu thích
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="card card-outline-secondary my-2">
+        <div class="card-header">
+            Reviews sản phẩm
+        </div>
+        <div class="card-body">
+            <p>{{{mo_ta}}}</p>
+            <hr>
+            <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample">
+                Lịch sử đấu giá
+            </button>
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>                           
+                                <th scope="col">Người mua</th>
+                                <th scope="col">Giá</th>
+                                <th scope="col">Thời điểm</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each ../bidders}}
+                            <tr>
+                                <td>{{ten_dang_nhap}}</td>
+                                <td>{{format gia}}</td>
+                                <td>{{thoi_diem_ra_gia}}</td>
+                            </tr>
+                            {{/each}}
+                            {{!-- <tr>
+                                <th scope="row">2</th>
+                                <td>18:10:11 07/11/2019</td>
+                                <td>Thornton</td>
+                                <td>910.000</td>
+                            </tr>
+                            <tr>`
+                                <th scope="row">3</th>
+                                <td>03:04:12 10/11/2019</td>
+                                <td>the Bird</td>
+                                <td>1.100.000</td>
+                            </tr> --}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card card-outline-secondary my-4">
+        <div class="card-header">
+            Sản phẩm tương tự
+        </div>
+        <div class="card-body row m-1" style="display: flex;justify-content: center;">
+            {{#each ../this.relate}}
+            <div class="card" style="width: 13rem;">
+                <img src="/images/{{id}}/main.jpg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ten_sp}}</h5>
+                    <a href="/{{id}}/detailproduct" class="btn btn-secondary">Chi tiết</a>
+                </div>
+            </div>
+            {{/each}}
+            {{!-- <div class="card" style="width: 13rem;">
+                <img src="https://salt.tikicdn.com/cache/w1200/ts/product/fa/96/62/2772c85bc385cb8c7d10372971f5d7a1.jpg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Điện Thại Samsung Galaxy J2 Pro 16GB - Quốc Tế - Đen</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#" class="btn btn-secondary">Chi tiết</a>
+                </div>
+            </div>
+            <div class="card" style="width: 13rem;">
+                <img src="https://salt.tikicdn.com/cache/w1200/ts/product/9f/72/b8/64c4c6c53dd222486e7e737bdd3b348c.jpg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Điện Thoại Samsung Galaxy J7 Plus 32GB - Quốc Tế - Đen</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#" class="btn btn-secondary">Chi tiết</a>
+                </div>
+            </div>
+            <div class="card" style="width: 13rem;">
+                <img src="https://salt.tikicdn.com/cache/w1200/ts/product/c6/f5/29/6f5f3f0962fd0a60cfe249fabfcfe770.jpg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Điện Thại Samsung Galaxy J2 Pro SM-J250G/DS 1.5GB/16GB 5.0-inches Dual SIM -
+                        Quốc Tế - Hồng</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#" class="btn btn-secondary">Chi tiết</a>
+                </div>
+            </div>
+            <div class="card" style="width: 13rem;">
+                <img src="https://salt.tikicdn.com/cache/w1200/ts/product/55/9b/e0/6f525379d486033eb4386d7c6bbd3c1c.jpg"
+                    class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">Điện Thoại Samsung Galaxy J2 Prime (SM-G532G/DS) 1.5GB / 8GB Hai SIM Unlocked
+                        - Bản Quốc Tế ( GOLD)</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                    <a href="#" class="btn btn-secondary">Chi tiết</a>
+                </div>
+            </div> --}}
+        </div>
+    </div>
+    {{/each}}
+</div>

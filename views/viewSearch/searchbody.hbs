@@ -1,0 +1,89 @@
+<div>
+<ul class="nav nav-pills navbar navbar-light bg-light" style="">
+        <div style="margin-left: 2.6%;">
+        <ul class="nav nav-pills navbar navbar-light bg-light" >
+            <form action="/search/sort" method="POST">
+            <li style="width:150px; display:inline-block;">
+                    <select id="sortProducts" name="sortProducts" class="form-control" onchange="this.form.submit()">
+                        <option value="0">Tất cả</option>
+                        <option value="1">Ngày đăng tăng dần</option>
+                        <option value="2">Ngày đăng giảm dần</option>
+                        <option value="3">Giá tăng dần</option>
+                        <option value="4">Giá giảm dần</option>
+                    </select>
+            </li>
+            </form>
+        </ul>
+        </div>
+</ul>
+
+<div>
+    <div class="jumbotron jumbotron-fluid row" style="display: flex;justify-content: center;">
+    <div class="container">
+        {{#if this.empty}}
+	<div class="row" style="background-color:#F1F2F2;">
+		<p>Không có dữ liệu</p>
+	</div>
+	{{else}}
+        <form method="POST">
+        <div class="good row" style="justify-content: center; justify-content: space-around;">
+            {{#each this.products}}
+            <div class="card shadow bg-white rounded" style="width: 13em;">
+                <img src="/images/{{id}}/main.jpg" class="card-img-top" alt="{{ten_sp}}" title="{{ten_sp}}" >
+                <div class="card-body">
+                    <h5 class="card-title">{{ten_sp}}</h5>
+                    <h6 class="card-text">Giá hiện tại: {{format gia_hien_tai}}</h6>
+                    <h6 class="card-text">Bidder đặt giá cao nhất: Yang</h6>
+                    <h6 class="card-text">Ngày đăng: {{ngay_dang}}</h6>
+                    <h6 class="card-text">Ngày kết thúc: {{ngay_het_han}}</h6>
+                    <h6 class="card-text">Số lượt ra giá: {{total}}</h6>
+                    <div class="row">
+                        <a href="/{{id}}/detailproduct" class="btn btn-secondary" role="button" aria-pressed="true">Chi tiết</a>
+                        <button type="submit" class="btn btn-danger" formaction="/favourite/{{id}}">
+                            <i class="fa fa-trash-o" aria-hidden="true"></i>
+                            Yêu thích
+                        </button>
+                    </div>
+                </div>
+            </div>  
+            {{/each}}  
+        </div>
+        </form>
+        <nav aria-label="Page navigation example">
+		 	<ul class="pagination justify-content-center">
+		   		{{#each this.page_numbers}}   
+				{{#if isCurrentPage}}
+		   		<li class="page-item active" aria-current="page">
+					   <a class="page-link" href="javascript:;">{{value}} <span class="sr-only">(current)</span> </a>
+				</li>
+		   		{{else}}
+		   		<li class="page-item">
+		     		<a class="page-link" href="?page={{value}}">{{value}}</a>
+		   		</li>
+				{{/if}}
+				{{/each}}
+		 	</ul>
+	</nav>
+    {{/if}}
+    </div>
+    </div>
+</div>
+{{!-- <script>
+        function post(path, params, method='POST') {
+            const form = document.createElement('form');
+            form.method = method;
+            form.action = path;
+            for (const key in params) {
+                if (params.hasOwnProperty(key)) {
+                    const hiddenField = document.createElement('input');
+                    hiddenField.type = 'hidden';
+                    hiddenField.name = key;
+                    hiddenField.value = params[key];
+                    form.appendChild(hiddenField);
+                }
+            }
+            document.body.appendChild(form);
+            form.submit();
+        }
+</script> --}}
+</div>

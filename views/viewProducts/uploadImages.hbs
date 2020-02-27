@@ -1,0 +1,51 @@
+{{#section 'css'}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+  rel="stylesheet" />
+{{/section}}
+
+{{#section 'js'}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+
+    <script>
+         $('#fuMain').fileinput({
+            theme: 'fa',
+            dropZoneEnabled: false,
+            allowedFileExtensions: ['png', 'jpg', 'gif'],
+            enableResumableUpload: true,
+             maxFileCount: 5,
+        });
+
+        function vadication(){
+            var Pic = document.forms["form"]["fuMain"];
+            var Pic1 = document.forms["form"]["fuMain1"];
+            var Pic2 = document.forms["form"]["fuMain2"];
+            var Pic3 = document.forms["form"]["fuMain3"];
+
+           // alert(Pic.value);
+            
+            if (Pic.value == "" || Pic1.value == "" || Pic2.value == "" || Pic3.value == "") {
+                alert("Vui lòng upload 4 ảnh.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+{{/section}}
+
+<form method="POST" id="form" action="/upload/multiple" onsubmit="return vadication()"  enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="txtImage">Ảnh sản phẩm</label>
+        <div class="file-loading">
+            <input id="fuMain" name="fuMain" type="file" multiple>
+            <input id="fuMain" name="fuMain1" type="file" multiple>
+            <input id="fuMain" name="fuMain2" type="file" multiple>
+            <input id="fuMain" name="fuMain3" type="file" multiple>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-lg btn-success btn-block">
+        <i class="fa fa-check" aria-hidden="true"></i>
+        Xác nhận
+    </button>
+</form>

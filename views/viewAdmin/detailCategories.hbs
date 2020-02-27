@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Example App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
+        <div class="container">
+            <a class="navbar-brand" href="/admin" style="font-size: 20px">ONLINE AUNCTION</a>
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                
+            </button>
+            <div class="collapse navbar-collapse" id="exCollapsingNavbar">
+
+                <form id="frmLogout" method="post" action="/account/logout"></form>
+                <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+                    <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
+                    {{#if isAuthenticated}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Hi, <b>{{authUser.ten_dang_nhap}}!</b>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            
+                            <a class="dropdown-item" href="javascript: $('#frmLogout').submit();">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            Logout
+                            </a>
+                        </div>
+                    </li>
+                    {{else}}
+                    <li class="dropdown order-1 row">
+                        <a class="btn btn-dark" href="/account/register" role="button">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Đăng ký
+                        </a>
+                        <a class="btn btn-success" href="/account/login" role="button">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Đăng nhập
+                        </a>
+                    </li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+    <form method="POST">
+    <div class="container m-4">
+    {{#each this.products}}
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="/images/{{id}}/main.jpg" alt={{id}} style="width: 300px; height: 300px;">
+                <ul class="row" style="list-style: none; margin-top:5px; padding:0; margin-left: 0;">
+                    <li><img src="/images/{{id}}/{{id}}-2.jpg" alt="..." style="width: 100px; height:100px; padding-right: 5px;"></li>
+                    <li><img src="/images/{{id}}/{{id}}-3.jpg" alt="..." style="width: 100px; height:100px; padding-right: 5px"></li>
+                    <li><img src="/images/{{id}}/{{id}}-4.jpg" alt="..." style="width: 100px; height:100px;"></li>
+                </ul>
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h3 class="card-title">{{ten_sp}}</h3>
+                    <h4 class="mb-0">Giá hiện tại: {{format gia_hien_tai}}</h4>
+                    <h4 class="mb-0">Giá khởi điệm: {{format gia_khoi_diem}}</h4>
+                    <small class="text-muted">Người bán: {{nguoi_ban_id}}</small>
+                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                    4.0 stars
+                    <br>
+                    <small class="text-muted">Ngày đăng: {{ngay_dang}}</small>
+                    <br>
+                    <small class="text-muted">Thời điểm kết thúc: {{ngay_het_han}}</small>
+                    <br>
+                    <small class="text-muted">Bidder ra giá cao nhất: </small>
+                    <span class="text-warning">&#9733; &#9733; &#9733; &#9733; &#9734;</span>
+                    4.0 stars
+                </div>
+            </div>
+        </div>
+        <div class="card card-outline-secondary my-2">
+            <div class="card-header">
+                Reviews sản phẩm
+            </div>
+            <div class="card-body">
+                <p>{{mo_ta}}</p>
+                <hr>
+                <button class="btn btn-secondary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Lịch sử đấu giá
+                </button>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Người mua</th>
+                                    <th scope="col">Giá</th>
+                                    <th scope="col">Thời điểm</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each ../bidders}}
+                                <tr>
+                                    <td>{{ten_dang_nhap}}</td>
+                                    <td>{{format gia}}</td>
+                                    <td>{{thoi_diem_ra_gia}}</td>
+                                </tr>
+                                {{/each}}
+                                {{!-- <tr>                                    
+                                    <td>18:10:11 07/11/2019</td>
+                                    <td>Thornton</td>
+                                    <td>910.000</td>
+                                </tr>
+                                <tr>
+                                    <td>03:04:12 10/11/2019</td>
+                                    <td>the Bird</td>
+                                    <td>1.100.000</td>
+                                </tr> --}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mx-2">
+            <a href="/admin/categories/edit/{{id}}" class="btn btn-primary m-1">Cập nhật</a>
+            <button type="submit" class="btn btn-danger m-1" formaction="/admin/categories/del/{{id}}">
+                    Xóa
+            </button>
+        </div>
+    </form>
+    </div>
+    {{/each}}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

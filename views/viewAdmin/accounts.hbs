@@ -1,0 +1,159 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Example App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
+        <div class="container">
+            <a class="navbar-brand" href="/admin" style="font-size: 20px">ONLINE AUNCTION</a>
+            <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                
+            </button>
+            <div class="collapse navbar-collapse" id="exCollapsingNavbar">
+
+                <form id="frmLogout" method="post" action="/account/logout"></form>
+                <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+                    <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
+                    {{#if isAuthenticated}}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false">
+                            Hi, <b>{{authUser.ten_dang_nhap}}!</b>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            
+                            <a class="dropdown-item" href="javascript: $('#frmLogout').submit();">
+                            <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            Logout
+                            </a>
+                        </div>
+                    </li>
+                    {{else}}
+                    <li class="dropdown order-1 row">
+                        <a class="btn btn-dark" href="/account/register" role="button">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Đăng ký
+                        </a>
+                        <a class="btn btn-success" href="/account/login" role="button">
+                            <i class="fa fa-plus" aria-hidden="true"></i>
+                            Đăng nhập
+                        </a>
+                    </li>
+                    {{/if}}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+
+    <form method="POST">
+        <div class="container m-5">
+            <div class="card">
+                    <div class="card-header">
+                        <b>Quản lý tài khoản</b>
+                        <a role="button" class="btn btn-outline-success float-sm-right" href="/admin/upload">Đăng sản phẩm</a>
+                    </div>
+                    <div class="row card-body">
+                    
+                        <div class="col">
+                            <div class="list-group">
+                                <a href="/admin/accounts/ds/2" class="list-group-item list-group-item-action {{#if lcCategories.isActive2}} active {{/if}}">Tất cả</a>
+                                <a href="/admin/accounts/ds/1" class="list-group-item list-group-item-action {{#if lcCategories.isActive1}} active {{/if}}">Seller</a>
+                                <a href="/admin/accounts/ds/0" class="list-group-item list-group-item-action {{#if lcCategories.isActive0}} active {{/if}}">Bidder</a>
+                            </div>
+
+                            <div class="list-group mt-3">
+                                <a href="/admin/accounts/upgrade" class="list-group-item list-group-item-action list-group-item-success">Upgrade lên Seller</a>
+                               
+                            </div>
+                        </div>
+
+                        <div class="col-lg-9">
+                            {{#if this.empty}}
+                                <h4>Không có dữ liệu</h4>
+                            {{else}}
+
+                                {{#if lcCategories.upgrade}}
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">Mã tài khoản</th>
+                                            <th scope="col">Tên đăng nhập</th>
+                                            <th scope="col">Tên người dùng</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Ngày xin phép</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each this.accounts}}
+                                            <form method="POST">
+                                            <tr>
+                                            <th scope="row">{{id}}</th>
+                                            <td>{{ten_dang_nhap}}</td>
+                                            <td>{{ten}}</td>
+                                            <td>{{email}}</td>
+                                            <td>{{ngay_dk}}</td>
+                                            <td class="text-right row">
+                                                <button type="submit" class="btn btn-sm btn-primary mr-1" formaction="/admin/accounts/upgrade/OK/{{id}}">
+                                                    Chấp thuận
+                                                </button>
+                                                <button type="submit" class="btn btn-sm btn-danger" formaction="/admin/accounts/upgrade/NO/{{id}}">
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                    Từ chối
+                                                </button>
+                                            </td>
+                                            </tr>
+                                            </form>
+                                            {{/each}}
+                                        </tbody>
+                                    
+                                    </table>
+                                {{else}}
+                                    <table class="table table-striped">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">Mã tài khoản</th>
+                                            <th scope="col">Tên đăng nhập</th>
+                                            <th scope="col">Tên người dùng</th>
+                                            <th scope="col">Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {{#each this.accounts}}
+                                            <tr>
+                                            <th scope="row">{{id}}</th>
+                                            <td>{{ten_dang_nhap}}</td>
+                                            <td>{{ten}}</td>
+                                            <td>{{email}}</td>
+                                            <td class="text-right row">
+                                                <a class="btn btn-sm btn-primary mr-1" href="/" role= "button">
+                                                    Xem
+                                                </a>
+                                                <button type="submit" class="btn btn-sm btn-danger" formaction="/">
+                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                                    Xóa
+                                                </button>
+                                            </td>
+                                            </tr>
+                                            {{/each}}
+                                        </tbody>
+                                    
+                                    </table>
+                                {{/if}}
+                            {{/if}}
+                        </div>
+                    </div>      
+            </div>          
+        </div>
+    </form>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

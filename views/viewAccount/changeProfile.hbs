@@ -1,0 +1,56 @@
+{{#section 'css'}}
+<link rel = "stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+{{/section}}
+
+{{#section 'js'}}
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+  
+  <script>    
+    $('#txtDOB').datetimepicker({
+      timepicker: false,
+      format: 'd/m/Y',
+      mask: true,
+      //value: '1/1/2020'
+    });
+    </script>
+{{/section}}
+
+<div class="container m-4">
+    <form method="POST">
+        <h4>Thay đổi thông tin: </h4>
+        {{#if err_message}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                    {{err_message}}
+        </div>
+        {{/if}}
+        {{#each info}}
+        <div class="form-group">
+            <label for="txtFullDes">Họ tên:</label>
+            <textarea class="form-control" id="txtName" name="Name">{{ten}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="txtFullDes">Email:</label>
+            <textarea class="form-control" id="txtEmail" name="Email">{{email}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="txtFullDes">Ngày sinh:</label>
+            <textarea class="form-control" id="txtDOB" name="DOB">{{ngay_sinh}}</textarea>
+        </div>
+        {{/each}}           
+        <div class="row">
+            <button type="submit" class="btn btn-lg btn-success btn-block">
+                <i class="fa fa-check" aria-hidden="true"></i>
+                    Xác nhận
+            </button>
+            <button type="reset" class="btn btn-lg btn-danger btn-block">
+                <i class="fa fa-check" aria-hidden="true"></i>
+                    Hủy
+            </button>
+        </div>
+    </form>
+</div>

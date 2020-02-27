@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tài khoản</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" role="navigation">
+            <div class="container">
+                <a class="navbar-brand" href="index.html" style="font-size: 20px">ONLINE AUNCTION</a>
+                <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar">
+                    &#9776;
+                </button>
+                <div class="collapse navbar-collapse" id="exCollapsingNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Link</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">Service</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link">More</a></li>
+        
+                    </ul>
+                    <ul class="nav navbar-nav flex-row justify-content-between ml-auto">
+                        <li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
+                        <li class="dropdown order-1 row">
+                            <form action="sell.html">
+                                <button type="submit" class="btn btn-dark">Đăng bán<span class="caret"></span></button>
+                            </form>
+                            <form action="account_seller.html">
+                                <button type="submit" class="btn btn-dark">Quản lý tài khoản<span class="caret"></span></button>
+                            </form>
+                            <form action="index.html">
+                                 <button type="submit" class="btn btn-dark">Đăng xuất<span class="caret"></span></button>
+                            </form>  
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+      </br>
+        
+        <div class="bd-example mt-3">
+            <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+              <ol class="carousel-indicators">
+                <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img src="products_images/iPhoneXIPro.jpg" class="d-block w-100" alt="..." style="height: 400px">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>iPhone XI Pro Max 512GB</h5>
+                    <p>43.999.000Đ</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="products_images/iPhoneXIPro.jpg" class="d-block w-100" alt="..." style="height: 400px">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>iPhone XI Pro Max 256GB</h5>
+                    <p>37.999.000Đ</p>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <img src="products_images/iPhoneXIPro.jpg" class="d-block w-100" alt="..." style="height: 400px">
+                  <div class="carousel-caption d-none d-md-block">
+                    <h5>iPhone XI Pro 256GB</h5>
+                    <p>34.999.000Đ</p>
+                  </div>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+              </a>
+              <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+              </a>
+            </div>
+        </div>
+        
+        <ul class="nav nav-pills navbar navbar-light bg-light">
+          <li>
+            <div class="dropdown" style="margin-left: 50%">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Điện tử</button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Điện thoại di động</a>
+              <a class="dropdown-item" href="#">Máy tính xách tay</a>
+            </div>
+            </div>
+          </li>
+          <ul class="nav nav-pills navbar navbar-light bg-light">
+            <li>
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </li>
+            <li style="margin-left: 10px">
+              <button type="button" class="btn btn-outline-dark">Tìm kiếm</button>
+            </li>
+          </ul>
+        </ul>
+        
+        <div class="row m-4">
+            <div class="col-4">
+              <div class="list-group" id="list-tab" role="tablist">
+                <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-1" role="tab" aria-controls="profile">Thông tin cá nhân</a>
+                <a class="list-group-item list-group-item-action" id="list-profile-list" data-toggle="list" href="#list-2" role="tab" aria-controls="favourite">Sản phẩm yêu thích</a>
+                <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-3" role="tab" aria-controls="bidding">Sản phẩm đang đấu giá</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-4" role="tab" aria-controls="won">Sản phẩm đã thắng</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-5" role="tab" aria-controls="selling">Sản phẩm đã đăng bán</a>
+                <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-6" role="tab" aria-controls="comment">Xem đánh giá</a>
+              </div>
+            </div>
+            <div class="col-8">
+              <div class="tab-content" id="nav-tabContent">
+                <div class="tab-pane fade show active" id="list-1" role="tabpanel" aria-labelledby="list-home-list">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                <img src="http://placehold.it/300x300"  alt="..." style="width: 300px; height: 300px;">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body ml-5">
+                                    <h3 class="card-title">Thông tin tài khoản</h3>                    
+                                    <p>Họ tên: Trần Lê Khánh Hồng</p>
+                                    <p>Email: khanhhong141049@gmail.com</p>
+                                    <p id="point">Điểm đánh giá: +1</p>
+                                    <p>Loại tài khoản: Seller</p>
+                                    <button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary" style="color: black;">Đổi mật khẩu<span class="caret"></span></button>
+                                    <ul class="dropdown-menu dropdown-menu-right mt-2">
+                                      <li class="px-3 py-2">
+                                        <form class="form" role="form">
+                                              <div class="form-group">
+                                                  <input id="oldPasswordInput" placeholder="Mật khẩu cũ" class="form-control form-control-sm" type="text" required="">
+                                              </div>
+                                              <div class="form-group">
+                                                  <input id="newPasswordInput" placeholder="Mật khẩu mới" class="form-control form-control-sm" type="text" required="">
+                                              </div>
+                                              <div class="form-group">
+                                                  <input id="confirmPasswordInput" placeholder="Xác nhận mật khẩu mới" class="form-control form-control-sm" type="text" required="">
+                                              </div>
+                                              <div class="form-group">
+                                                  <button type="submit" class="btn btn-secondary btn-block">Đổi mật khẩu</button>
+                                              </div>
+                                          </form>
+                                      </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="tab-pane fade" id="list-2" role="tabpanel" aria-labelledby="list-profile-list">
+                    <div class="good row">
+                        <div class="card" style="width: 13rem;">
+                        <img src="1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 13rem;">
+                        <img src="2.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 13rem;">
+                        <img src="3.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 13rem;">
+                        <img src="4.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 13rem;">
+                        <img src="5.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      </div>
+                </div>
+                <div class="tab-pane fade" id="list-3" role="tabpanel" aria-labelledby="list-messages-list">
+                    <div class="good row">
+                        <div class="card" style="width: 13rem;">
+                        <img src="1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 13rem;">
+                        <img src="2.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 13rem;">
+                        <img src="3.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 13rem;">
+                        <img src="4.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 13rem;">
+                        <img src="5.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      </div>
+                </div>
+                <div class="tab-pane fade" id="list-4" role="tabpanel" aria-labelledby="list-settings-list">
+                    <div class="good row">
+                        <div class="card" style="width: 13rem;">
+                        <img src="1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 13rem;">
+                        <img src="2.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 13rem;">
+                        <img src="3.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 13rem;">
+                        <img src="4.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      <div class="card" style="width: 13rem;">
+                        <img src="5.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Card title</h5>
+                          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                          <a href="#" class="btn btn-secondary">Đấu giá</a>
+                        </div>
+                      </div>
+                      </div>
+                </div>
+                <div class="tab-pane fade" id="list-5" role="tabpanel" aria-labelledby="list-settings-list">
+                        <div class="good row">
+                            <div class="card" style="width: 13rem;">
+                            <img src="1.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <a href="#" class="btn btn-secondary">Đấu giá</a>
+                            </div>
+                          </div>
+                          <div class="card" style="width: 13rem;">
+                            <img src="2.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <a href="#" class="btn btn-secondary">Đấu giá</a>
+                            </div>
+                          </div>
+                          <div class="card" style="width: 13rem;">
+                            <img src="3.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <a href="#" class="btn btn-secondary">Đấu giá</a>
+                            </div>
+                          </div>
+                          <div class="card" style="width: 13rem;">
+                            <img src="4.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <a href="#" class="btn btn-secondary">Đấu giá</a>
+                            </div>
+                          </div>
+                          <div class="card" style="width: 13rem;">
+                            <img src="5.jpg" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                              <a href="#" class="btn btn-secondary">Đấu giá</a>
+                            </div>
+                          </div>
+                          </div>
+                </div>
+                <div class="tab-pane fade" id="list-6" role="tabpanel" aria-labelledby="list-settings-list">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">Thời gian</th>
+                        <th scope="col">Người đánh giá</th>
+                        <th scope="col">Đánh giá</th>
+                        <th scope="col">Nhận xét</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">21/09/2019</th>
+                        <td>Mark</td>
+                        <td>+1</td>
+                        <td>Giao dịch đúng hẹn</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">10/10/2019</th>
+                        <td>Jacob</td>
+                        <td>+1</td>
+                        <td>Uy tín</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">11/11/2019</th>
+                        <td>Larry</td>
+                        <td>-1</td>
+                        <td>Giỡn mặt với khách hàng</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              </div>
+            </div>
+        </div>
+          
+        <footer class="footer ml-5 p-3">
+            <div class="row">
+                <div class="col-12 col-md">
+                  <img class="row" src="bootstrap-solid.svg" width="20" height="20" >
+                  <small class="row">@2017-2019</small>
+                </div>
+                <div class="col-6 col-md">
+                  <h5>Liên hệ</h5>
+                  <ul class="footer-detail m-0 p-0" style="list-style: none">
+                    <li>Văn phòng:</li>
+                    <li>Hotline:</li>
+                  </ul>
+                </div>
+                <div class="col-6 col-md">
+                  <h5>About</h5>
+                  <ul class="footer-detail m-0 p-0" style="list-style: none">
+                    <li>Team</li>
+                    <li>Locations</li>
+                    <li>Privacy</li>
+                    <li>Terms</li>
+                  </ul>
+                </div>
+            </div>
+        </footer>	
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+        
+    </body>
+</html>

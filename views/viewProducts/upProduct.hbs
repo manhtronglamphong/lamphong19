@@ -1,0 +1,114 @@
+{{#section 'css'}}
+    <link rel = "stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/css/fileinput.min.css" media="all"
+  rel="stylesheet" />
+{{/section}}
+
+{{#section 'js'}}
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/js/fileinput.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.0.3/themes/fa/theme.min.js"></script>
+        
+    <script>
+        tinymce.init(
+            {selector:'#txtFullDes'});
+
+        function vadication(){
+            var TenSp = document.forms["form"]["Name"];
+            var GiaKhoiDiem = document.forms["from"]["BeginPrice"];
+            var BuocGia = document.forms["form"]["Step"];
+            var ThoiGianKT = document.forms["form"]["EndTime"];
+            var MoTa = document.forms["form"]["FullDes"];
+            var HinhAnh = document.forms["form"]["fuMain"];
+
+            if (BuocGia.value < 0.1* GiaKhoiDiem.value ){
+                alert("Bước giá không được nhỏ hơn 10% giá khởi điểm.")
+                return false;
+            }
+
+            if( TenSp.value == "" || GiaKhoiDiem.value == "" || BuocGia.value == "" 
+            || ThoiGianKT.value == "" || MoTa.value == "" || HinhAnh.value == "")
+            {
+                alert("Please fill in all informations");
+                return false;
+            }
+
+            return true;
+        }
+
+        $('#txtEndTime').datetimepicker({
+            timepicker: false,
+            format: 'd/m/Y',
+            mask: true,
+            value: '1/1/2020'
+        });
+
+        
+       
+    </script>
+
+{{/section}}
+
+<form method="POST"  novalidate onsubmit="return vadication()" id="from" name="form" >
+    <div class="m-5 row justify-content-center">
+        <div class="card shadow">
+            <h4 class="card-header">
+                Upload
+            </h4>
+            <div class="card-body">
+                            <div class="form-group">
+                                <label for="txtFullDes">Tên sản phẩm:</label>
+                                <textarea class="form-control" id="txtName" name="Name"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtType">Chủng loại sản phẩm:</label>
+                                <select class="form-control" id="selectType" name="Type">
+                                    {{#each lcCategories}}
+                                    <option>{{ten_loai}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="txtFullDes">Giá khởi điểm:</label>
+                                <textarea class="form-control" id="txtBeginPrice" name="BeginPrice"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtFullDes">Giá tối thiểu:</label>
+                                <textarea class="form-control" id="txtBeginPrice" name="MinimumPrice"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtFullDes">Bước giá:</label>
+                                <textarea class="form-control" id="txtStep" name="Step"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtFullDes">Thời điểm kết thúc:</label>
+                                <textarea class="form-control" id="txtEndTime" name="EndTime"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtType">Có tự động gia hạn hay không?</label>
+                                <select class="form-control" id="selectGiaHan" name="GiaHan">
+                                    <option>Không</option>
+                                    <option>Có</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtFullDes">Mô tả sản phẩm:</label>
+                                <textarea class="form-control" id="txtFullDes" name="FullDes"></textarea>
+                            </div>
+            </div>
+
+            <div class="card-footer text-right">
+                        <button type="submit" class="btn btn-lg btn-success btn-block">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            Xác nhận
+                        </button>
+                        <button type="reset" class="btn btn-lg btn-danger btn-block">
+                            <i class="fa fa-check" aria-hidden="true"></i>
+                            Hủy
+                        </button>
+            </div>
+        </div>
+    </div>      
+</form>

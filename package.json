@@ -1,0 +1,45 @@
+{
+  "name": "web_dagk",
+  "version": "1.0.0",
+  "description": "Đồ án giữa kỳ môn Web năm học 2019 - 2020",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khanhhong06/WEB_DAGK.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khanhhong06/WEB_DAGK/issues"
+  },
+  "homepage": "https://github.com/khanhhong06/WEB_DAGK#readme",
+  "keywords": [],
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "data-mask": "0.0.4",
+    "express": "^4.17.1",
+    "express-async-errors": "^3.1.1",
+    "express-handlebars": "^3.1.0",
+    "express-handlebars-sections": "^1.0.1",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.3.1",
+    "masked": "^1.2.1",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1",
+    "multer": "^1.4.2",
+    "mysql": "^2.17.1",
+    "nodemailer": "^6.4.2",
+    "numeral": "^2.0.6",
+    "request": "^2.88.0",
+    "rimraf": "^3.0.0",
+    "save": "^2.4.0",
+    "sweetalert2": "^9.5.4"
+  },
+  "devDependencies": {}
+}
